@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:last_fm_api/network/repository/album_repository/album_repository_impl.dart';
 import 'package:last_fm_api/screens/search/search_controller.dart';
 
 class SearchBinding extends Bindings {
@@ -6,7 +7,7 @@ class SearchBinding extends Bindings {
   void dependencies() {
     print("search binding");
     Get.lazyPut<SearchController>(
-      () => SearchController(),
+      () => SearchController(repository: AlbumRepositoryImpl()),
     );
   }
 }

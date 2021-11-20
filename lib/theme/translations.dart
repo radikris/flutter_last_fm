@@ -18,8 +18,9 @@ class Translation extends Translations {
           'error_no_internet': "No internet connection",
           'error_conflict': "Error due to a conflict",
           'error_api_connection_timeout': "Send timeout in connection with API server",
-          'error_process_data': 'error_process_data'.tr,
+          'error_process_data': 'error_process_data',
           'error_not_acceptable': "Not acceptable",
+          'search_hint': 'Search your albums'
         },
         //HUNGARIAN
         'hu_HU': {

@@ -16,6 +16,7 @@ class CommonBackground extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: false,
         body: Column(children: [
           if (appBar != null) appBar!,
           child,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:last_fm_api/models/album.dart';
+import 'package:last_fm_api/theme/app_dimen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AlbumCard extends StatelessWidget {
   const AlbumCard({Key? key, required this.album}) : super(key: key);
@@ -12,13 +14,14 @@ class AlbumCard extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(40.0, 5.0, 20.0, 5.0),
-          height: 170.0,
+          margin: EdgeInsets.fromLTRB(AppDimen.mediumSizeHorizontal * 2, AppDimen.smallestSizeVertical,
+              AppDimen.commonSizeHorizontal, AppDimen.smallestSizeVertical),
+          height: 170.0.h,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20.0),
-            boxShadow: <BoxShadow>[BoxShadow(color: Colors.black54, blurRadius: 5.0, offset: Offset(0.0, 0.75))],
+            borderRadius: BorderRadius.circular(AppDimen.mediumRadius),
+            boxShadow: const <BoxShadow>[BoxShadow(color: Colors.black54, blurRadius: 5.0, offset: Offset(0.0, 0.75))],
           ),
           child: Padding(
             padding: EdgeInsets.fromLTRB(100.0, 20.0, 20.0, 20.0),
