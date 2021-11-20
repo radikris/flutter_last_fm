@@ -7,6 +7,7 @@ class Navigation {
   static void toDetail() {
     Get.toNamed(
       Routes.DETAIL,
+      
     );
   }
 }

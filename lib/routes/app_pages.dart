@@ -15,11 +15,13 @@ class AppPages {
       name: _Paths.SEARCH,
       page: () => SearchPage(),
       binding: SearchBinding(),
+      transition: Transition.leftToRightWithFade,
     ),
     GetPage(
       name: _Paths.DETAIL,
       page: () => DetailPage(),
       binding: DetailBinding(),
+      transition: Transition.leftToRightWithFade,
     ),
   ];
 }

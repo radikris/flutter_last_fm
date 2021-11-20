@@ -4,6 +4,8 @@ import 'package:last_fm_api/screens/detail/detail_controller.dart';
 class DetailBinding extends Bindings {
   @override
   void dependencies() {
+    print("detail binding");
+
     Get.lazyPut<DetailController>(
       () => DetailController(),
     );

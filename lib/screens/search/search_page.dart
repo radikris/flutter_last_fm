@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:last_fm_api/routes/app_navigator.dart';
 import 'package:last_fm_api/screens/search/search_controller.dart';
 
 class SearchPage extends GetView<SearchController> {
@@ -7,6 +8,11 @@ class SearchPage extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: InkWell(onTap: Navigation.toDetail, child: Text("SEARCH")),
+      ),
+    );
   }
 }
