@@ -8,6 +8,7 @@ import 'package:last_fm_api/models/album.dart';
 import 'package:last_fm_api/network/exception/network_exceptions.dart';
 import 'package:last_fm_api/network/repository/album_repository/album_repository_impl.dart';
 import 'package:last_fm_api/routes/app_navigator.dart';
+import 'package:last_fm_api/screens/search/components/album_card.dart';
 import 'package:last_fm_api/screens/search/search_controller.dart';
 import 'package:last_fm_api/theme/app_dimen.dart';
 
@@ -82,7 +83,7 @@ class _SearchPageState extends State<SearchPage> {
                   height: AppDimen.commonSizeVertical,
                 ),
                 Container(
-                  height: Get.size.height * 0.5,
+                  height: Get.size.height * 0.8,
                   child: RefreshIndicator(
                     onRefresh: () => Future.sync(
                       () => _pagingController.refresh(),
@@ -92,11 +93,8 @@ class _SearchPageState extends State<SearchPage> {
 
                       pagingController: _pagingController,
                       builderDelegate: PagedChildBuilderDelegate<Album>(
-                        itemBuilder: (context, item, index) => Container(
-                          height: 50,
-                          child: Text(
-                            item.artist ?? "",
-                          ),
+                        itemBuilder: (context, item, index) => AlbumCard(
+                          album: item,
                         ),
                       ),
                     ),
