@@ -25,7 +25,7 @@ class DetailSliverAppBar extends StatelessWidget {
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        title: Text(albumName, style: themeData.textTheme.headline4?.copyWith(color: AppColor.appWhite)),
+        title: Text(albumName, style: themeData.textTheme.headline5?.copyWith(color: AppColor.appWhite)),
         background: CommonNetworkImage(url: albumImage),
       ),
     );
