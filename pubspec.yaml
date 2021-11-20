@@ -28,6 +28,9 @@ dependencies:
   #STATE MANAGEMNT
   get: ^4.3.8
 
+  #TOOLS
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

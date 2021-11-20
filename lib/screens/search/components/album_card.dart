@@ -28,7 +28,7 @@ class AlbumCard extends StatelessWidget {
           bottom: 15.0,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: CommonNetworkImage(url: album.image?.elementAt(3).text ?? "")),
+              child: CommonNetworkImage(width: 110.w, url: album.image?.elementAt(3).text ?? "")),
         ),
       ],
     );
