@@ -4,5 +4,7 @@
     "url?": "https://www.last.fm/music/Disturbed/Believe/Prayer",
     "name?": "Prayer",
     "@attr?": "$attr",
-    "artist?": "$artist"
+    "artist?": "$artist",
+    "@rank?": "1",
+    "mbid?": ["Alma"]
 }

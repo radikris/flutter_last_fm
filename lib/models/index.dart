@@ -7,6 +7,7 @@ export 'image.dart';
 export 'streamable.dart';
 export 'tag.dart';
 export 'tags.dart';
+export 'toptags.dart';
 export 'track.dart';
 export 'tracks.dart';
 export 'wiki.dart';

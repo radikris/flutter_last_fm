@@ -15,10 +15,10 @@ class AlbumRepositoryImpl extends GetxService implements AlbumRepository {
   Future<ApiResult<List<Album>>> fetchAlbums({int? page, int? limit, String? search}) async {
     try {
       final response = await ApiClient.to.get("", queryParameters: {
+        "method": "album.search",
         "page": page,
         "limit": limit,
         "album": search,
-        "method": "album.search",
       });
       List<Album> albumList = Albummatches.fromJson(response["results"]["albummatches"]).album;
       return ApiResult.success(data: albumList);
@@ -30,12 +30,8 @@ class AlbumRepositoryImpl extends GetxService implements AlbumRepository {
   @override
   Future<ApiResult<Albumdetail>> fetchAlbumDetail({String? mbid, String? album, String? artist}) async {
     try {
-      final response = await ApiClient.to.get("", queryParameters: {
-        "mbid": mbid,
-        "artist": artist,
-        "album": album,
-        "method": "album.getInfo",
-      });
+      final response = await ApiClient.to.get("",
+          queryParameters: {"method": "album.getInfo", "mbid": mbid, "artist": artist, "album": album, "lang": "hu"});
       Albumdetail albumDetail = Albumdetail.fromJson(response["album"]);
       print(albumDetail);
       return ApiResult.success(data: albumDetail);
