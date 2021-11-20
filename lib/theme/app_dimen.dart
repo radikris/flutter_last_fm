@@ -29,6 +29,7 @@ class AppDimen {
   static final double simpleRadius = 12.r;
   static final double commonRadius = 16.r;
   static final double mediumRadius = 24.r;
+  static final double largeRadius = 32.r;
 
   static final double commonBorderWidth = 1.w;
   static final double commonBorderHeight = 1.h;
