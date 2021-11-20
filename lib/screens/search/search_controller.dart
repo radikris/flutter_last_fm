@@ -33,8 +33,11 @@ class SearchController extends GetxController {
   }
 
   void _onSearchChanged(String query) {
-    fetchAlbums();
-    pagingController.refresh();
+    if (query.isNotEmpty) {
+      fetchAlbums();
+
+      pagingController.refresh();
+    }
   }
 
   void searchControllerOnChanged(String value) {

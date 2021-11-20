@@ -65,7 +65,7 @@ class _SearchPageState extends State<SearchPage> {
                     width: double.infinity,
                     child: CommonEditText(
                         prefixIcon: const Icon(Icons.search),
-                        hint: 'search_album'.tr,
+                        hint: 'search_hint'.tr,
                         onChanged: controller.searchControllerOnChanged,
                         controller: controller.searchController)),
                 SizedBox(

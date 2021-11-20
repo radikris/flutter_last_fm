@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:last_fm_api/models/album.dart';
+import 'package:last_fm_api/screens/search/components/album_card_description.dart';
+import 'package:last_fm_api/screens/search/components/album_card_wrapper.dart';
 import 'package:last_fm_api/theme/app_dimen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,36 +15,10 @@ class AlbumCard extends StatelessWidget {
     final themeData = Theme.of(context);
     return Stack(
       children: <Widget>[
-        Container(
-          margin: EdgeInsets.fromLTRB(AppDimen.mediumSizeHorizontal * 2, AppDimen.smallestSizeVertical,
-              AppDimen.commonSizeHorizontal, AppDimen.smallestSizeVertical),
-          height: 170.0.h,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(AppDimen.mediumRadius),
-            boxShadow: const <BoxShadow>[BoxShadow(color: Colors.black54, blurRadius: 5.0, offset: Offset(0.0, 0.75))],
-          ),
+        AlbumCardWrapper(
           child: Padding(
             padding: EdgeInsets.fromLTRB(100.0, 20.0, 20.0, 20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  album.name ?? "",
-                  style: themeData.textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  '${album.artist}',
-                  style: themeData.textTheme.headline6,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
+            child: AlbumCardDescription(album: album),
           ),
         ),
         Positioned(
