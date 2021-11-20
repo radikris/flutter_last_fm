@@ -22,7 +22,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   //final controller = Get.find<SearchController>();
-  final PagingController<int, Album> _pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Album> _pagingController = PagingController(firstPageKey: 1, invisibleItemsThreshold: 1);
   APIRepository api = APIRepository();
 
   @override
@@ -35,45 +35,30 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> _fetchPage(int pageKey) async {
+    print("fetch next page");
+    print(pageKey);
+
     try {
-      final newItems = await api.fetchAlbums(pageKey, 5);
-      final isLastPage = newItems.length < 5;
-      if (isLastPage) {
-        _pagingController.appendLastPage(newItems);
-      } else {
-        final nextPageKey = pageKey + newItems.length;
-        _pagingController.appendPage(newItems, nextPageKey);
-      }
+      final apiResult = await api.fetchAlbums(pageKey, 5);
+      List<Album> newItems = [];
+
+      apiResult.when(success: (List<Album> result) {
+        newItems = result;
+
+        final isLastPage = newItems.length < 5;
+        if (isLastPage) {
+          _pagingController.appendLastPage(newItems);
+        } else {
+          final int nextPageKey = pageKey + (newItems.length);
+          _pagingController.appendPage(newItems, nextPageKey);
+        }
+      }, failure: (NetworkExceptions exception) {
+        print(exception);
+      });
     } catch (error) {
       _pagingController.error = error;
     }
   }
-
-  // Future<void> _fetchPage(int pageKey) async {
-  //   print("fetch next page");
-  //   print(pageKey);
-
-  //   try {
-  //     final apiResult = await api.fetchAlbums(pageKey, 5);
-  //     List<Album> newItems = [];
-
-  //     apiResult.when(success: (List<Album> result) {
-  //       newItems = result;
-
-  //       final isLastPage = newItems.length < 5;
-  //       if (isLastPage) {
-  //         _pagingController.appendLastPage(newItems);
-  //       } else {
-  //         final int nextPageKey = pageKey + (newItems.length);
-  //         _pagingController.appendPage(newItems, nextPageKey);
-  //       }
-  //     }, failure: (NetworkExceptions exception) {
-  //       print(exception);
-  //     });
-  //   } catch (error) {
-  //     _pagingController.error = error;
-  //   }
-  // }
 
   @override
   void dispose() {
@@ -96,18 +81,22 @@ class _SearchPageState extends State<SearchPage> {
                 SizedBox(
                   height: AppDimen.commonSizeVertical,
                 ),
-                RefreshIndicator(
-                  onRefresh: () => Future.sync(
-                    () => _pagingController.refresh(),
-                  ),
-                  child: Expanded(
+                Container(
+                  height: Get.size.height * 0.5,
+                  child: RefreshIndicator(
+                    onRefresh: () => Future.sync(
+                      () => _pagingController.refresh(),
+                    ),
                     child: PagedListView<int, Album>(
-                      shrinkWrap: true,
                       //physics: BouncingScrollPhysics(),
+
                       pagingController: _pagingController,
                       builderDelegate: PagedChildBuilderDelegate<Album>(
-                        itemBuilder: (context, item, index) => Text(
-                          item.artist ?? "",
+                        itemBuilder: (context, item, index) => Container(
+                          height: 50,
+                          child: Text(
+                            item.artist ?? "",
+                          ),
                         ),
                       ),
                     ),

@@ -16,32 +16,20 @@ class APIRepository {
     dioClient = DioClient(_baseUrl, dio);
   }
 
-  // Future<ApiResult<List<Album>>> fetchAlbums(int page, int limit) async {
-  //   try {
-  //     final response = await dioClient.get("", queryParameters: {
-  //       "api_key": _apiKey,
-  //       "page": page,
-  //       "limit": limit,
-  //       "album": "Alma",
-  //       "method": "album.search",
-  //       "format": "json"
-  //     });
-  //     List<Album> albumList = Albummatches.fromJson(response["results"]["albummatches"]).album;
-  //     return ApiResult.success(data: albumList);
-  //   } catch (e) {
-  //     return ApiResult.failure(error: NetworkExceptions.getDioException(e));
-  //   }
-  // }
-  Future<List<Album>> fetchAlbums(int page, int limit) async {
-    final response = await dioClient.get("", queryParameters: {
-      "api_key": _apiKey,
-      "page": page,
-      "limit": limit,
-      "album": "Alma",
-      "method": "album.search",
-      "format": "json"
-    });
-    List<Album> albumList = Albummatches.fromJson(response["results"]["albummatches"]).album;
-    return albumList;
+  Future<ApiResult<List<Album>>> fetchAlbums(int page, int limit) async {
+    try {
+      final response = await dioClient.get("", queryParameters: {
+        "api_key": _apiKey,
+        "page": page,
+        "limit": limit,
+        "album": "Alma",
+        "method": "album.search",
+        "format": "json"
+      });
+      List<Album> albumList = Albummatches.fromJson(response["results"]["albummatches"]).album;
+      return ApiResult.success(data: albumList);
+    } catch (e) {
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
   }
 }
