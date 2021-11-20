@@ -8,19 +8,19 @@ import 'index.dart';
 class Wiki {
 
   const Wiki({
-    required this.published,
-    required this.summary,
-    required this.content,
+    this.published,
+    this.summary,
+    this.content,
   });
 
-  final String published;
-  final String summary;
-  final String content;
+  final String? published;
+  final String? summary;
+  final String? content;
 
   factory Wiki.fromJson(Map<String,dynamic> json) => Wiki(
-    published: json['published'] as String,
-    summary: json['summary'] as String,
-    content: json['content'] as String
+    published: json['published'] != null ? json['published'] as String : null,
+    summary: json['summary'] != null ? json['summary'] as String : null,
+    content: json['content'] != null ? json['content'] as String : null
   );
   
   Map<String, dynamic> toJson() => {
@@ -37,13 +37,13 @@ class Wiki {
 
 
   Wiki copyWith({
-    String? published,
-    String? summary,
-    String? content
+    Optional<String?>? published,
+    Optional<String?>? summary,
+    Optional<String?>? content
   }) => Wiki(
-    published: published ?? this.published,
-    summary: summary ?? this.summary,
-    content: content ?? this.content,
+    published: checkOptional(published, this.published),
+    summary: checkOptional(summary, this.summary),
+    content: checkOptional(content, this.content),
   );
 
   @override

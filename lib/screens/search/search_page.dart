@@ -54,45 +54,48 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return CommonBackground(
       appBar: CommonAppBar(title: 'app_title'.tr),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppDimen.simpleSizeHorizontal, vertical: AppDimen.simpleSizeVertical),
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                    width: double.infinity,
-                    child: CommonEditText(
-                        prefixIcon: const Icon(Icons.search),
-                        hint: 'search_hint'.tr,
-                        onChanged: controller.searchControllerOnChanged,
-                        controller: controller.searchController)),
-                SizedBox(
-                  height: AppDimen.commonSizeVertical,
-                ),
-                Container(
-                  height: Get.size.height * 0.75,
-                  child: RefreshIndicator(
-                    onRefresh: () => Future.sync(
-                      () => controller.pagingController.refresh(),
-                    ),
-                    child: PagedListView<int, Album>(
-                      pagingController: controller.pagingController,
-                      builderDelegate: PagedChildBuilderDelegate<Album>(
-                        itemBuilder: (context, item, index) => GestureDetector(
-                          onTap: () {
-                            controller.saveSelectedAlbumId(item.mbid ?? "");
-                            Navigation.toDetail();
-                          },
-                          child: AlbumCard(
-                            album: item,
+      child: SafeArea(
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: AppDimen.simpleSizeHorizontal, vertical: AppDimen.simpleSizeVertical),
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                      width: double.infinity,
+                      child: CommonEditText(
+                          prefixIcon: const Icon(Icons.search),
+                          hint: 'search_hint'.tr,
+                          onChanged: controller.searchControllerOnChanged,
+                          controller: controller.searchController)),
+                  SizedBox(
+                    height: AppDimen.commonSizeVertical,
+                  ),
+                  Container(
+                    height: Get.size.height * 0.73,
+                    child: RefreshIndicator(
+                      onRefresh: () => Future.sync(
+                        () => controller.pagingController.refresh(),
+                      ),
+                      child: PagedListView<int, Album>(
+                        pagingController: controller.pagingController,
+                        builderDelegate: PagedChildBuilderDelegate<Album>(
+                          itemBuilder: (context, item, index) => GestureDetector(
+                            onTap: () {
+                              controller.saveSelectedAlbum(item);
+                              Navigation.toDetail();
+                            },
+                            child: AlbumCard(
+                              album: item,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

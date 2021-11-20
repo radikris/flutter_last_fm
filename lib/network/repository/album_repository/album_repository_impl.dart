@@ -29,10 +29,12 @@ class AlbumRepositoryImpl extends GetxService implements AlbumRepository {
   }
 
   @override
-  Future<ApiResult<Albumdetail>> fetchAlbumDetail({String? mbid}) async {
+  Future<ApiResult<Albumdetail>> fetchAlbumDetail({String? mbid, String? album, String? artist}) async {
     try {
       final response = await ApiClient.to.get("", queryParameters: {
         "mbid": mbid,
+        "artist": artist,
+        "album": album,
         "method": "album.getInfo",
       });
       Albumdetail albumDetail = Albumdetail.fromJson(response["album"]);

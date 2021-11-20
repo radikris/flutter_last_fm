@@ -8,8 +8,9 @@ class DetailBinding extends Bindings {
   void dependencies() {
     print("detail binding");
 
+    //TODO first only saved mbid, but API not everywhere had it
     Get.lazyPut<DetailController>(
-      () => DetailController(mbid: Get.find<SearchController>().selectedAlbumId, repository: AlbumRepositoryImpl.to),
+      () => DetailController(album: Get.find<SearchController>().selectedAlbum, repository: AlbumRepositoryImpl.to),
     );
   }
 }

@@ -16,16 +16,16 @@ class DetailInfoChips extends StatelessWidget {
         CommonCard(
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.people), Text(AppUtil.formatStringToNumber(albumdetail.playcount))],
+            children: [Icon(Icons.people), Text(AppUtil.formatStringToNumber(albumdetail.playcount ?? "0"))],
           ),
         ),
         CommonCard(
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.headphones), Text(AppUtil.formatStringToNumber(albumdetail.listeners))],
+            children: [Icon(Icons.headphones), Text(AppUtil.formatStringToNumber(albumdetail.listeners ?? "0"))],
           ),
         ),
-        CommonCard(child: Text(albumdetail.artist)),
+        CommonCard(child: Text(albumdetail.artist ?? "")),
       ],
     );
   }
