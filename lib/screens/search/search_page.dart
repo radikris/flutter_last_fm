@@ -5,25 +5,75 @@ import 'package:last_fm_api/common/common_appbar.dart';
 import 'package:last_fm_api/common/common_background.dart';
 import 'package:last_fm_api/common/common_edittext.dart';
 import 'package:last_fm_api/models/album.dart';
+import 'package:last_fm_api/network/exception/network_exceptions.dart';
+import 'package:last_fm_api/network/repository/album_repository/album_repository_impl.dart';
 import 'package:last_fm_api/routes/app_navigator.dart';
 import 'package:last_fm_api/screens/search/search_controller.dart';
 import 'package:last_fm_api/theme/app_dimen.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  SearchPage({Key? key}) : super(key: key) {
+    print("searchpage init");
+  }
 
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final controller = Get.find<SearchController>();
-  final PagingController<int, Album> _pagingController = PagingController(firstPageKey: 0);
+  //final controller = Get.find<SearchController>();
+  final PagingController<int, Album> _pagingController = PagingController(firstPageKey: 1);
+  APIRepository api = APIRepository();
 
   @override
   void initState() {
+    _pagingController.addPageRequestListener((pageKey) {
+      _fetchPage(pageKey);
+    });
+
     super.initState();
   }
+
+  Future<void> _fetchPage(int pageKey) async {
+    try {
+      final newItems = await api.fetchAlbums(pageKey, 5);
+      final isLastPage = newItems.length < 5;
+      if (isLastPage) {
+        _pagingController.appendLastPage(newItems);
+      } else {
+        final nextPageKey = pageKey + newItems.length;
+        _pagingController.appendPage(newItems, nextPageKey);
+      }
+    } catch (error) {
+      _pagingController.error = error;
+    }
+  }
+
+  // Future<void> _fetchPage(int pageKey) async {
+  //   print("fetch next page");
+  //   print(pageKey);
+
+  //   try {
+  //     final apiResult = await api.fetchAlbums(pageKey, 5);
+  //     List<Album> newItems = [];
+
+  //     apiResult.when(success: (List<Album> result) {
+  //       newItems = result;
+
+  //       final isLastPage = newItems.length < 5;
+  //       if (isLastPage) {
+  //         _pagingController.appendLastPage(newItems);
+  //       } else {
+  //         final int nextPageKey = pageKey + (newItems.length);
+  //         _pagingController.appendPage(newItems, nextPageKey);
+  //       }
+  //     }, failure: (NetworkExceptions exception) {
+  //       print(exception);
+  //     });
+  //   } catch (error) {
+  //     _pagingController.error = error;
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -37,23 +87,34 @@ class _SearchPageState extends State<SearchPage> {
       appBar: CommonAppBar(title: 'app_title'.tr),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppDimen.simpleSizeHorizontal, vertical: AppDimen.simpleSizeVertical),
-        child: Center(
-          child: Column(
-            children: [
-              InkWell(onTap: Navigation.toDetail, child: Text("SEARCH")),
-              CommonEditText(controller: controller.searchController),
-              SizedBox(
-                height: AppDimen.commonSizeVertical,
-              ),
-              PagedListView<int, Album>(
-                pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<Album>(
-                  itemBuilder: (context, item, index) => Text(
-                    item.artist ?? "",
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                InkWell(onTap: Navigation.toDetail, child: Text("SEARCH")),
+                //CommonEditText(controller: controller.searchController),
+                SizedBox(
+                  height: AppDimen.commonSizeVertical,
+                ),
+                RefreshIndicator(
+                  onRefresh: () => Future.sync(
+                    () => _pagingController.refresh(),
+                  ),
+                  child: Expanded(
+                    child: PagedListView<int, Album>(
+                      shrinkWrap: true,
+                      //physics: BouncingScrollPhysics(),
+                      pagingController: _pagingController,
+                      builderDelegate: PagedChildBuilderDelegate<Album>(
+                        itemBuilder: (context, item, index) => Text(
+                          item.artist ?? "",
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
