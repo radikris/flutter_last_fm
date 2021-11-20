@@ -16,6 +16,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   infinite_scroll_pagination: ^3.1.0
   flutter_html: ^2.1.5
+  flutter_screenutil: ^5.0.0+2
 
   #JSON & NETWORK
   json_annotation: ^4.3.0
