@@ -7,7 +7,7 @@ class SearchBinding extends Bindings {
   void dependencies() {
     print("search binding");
     Get.lazyPut<SearchController>(
-      () => SearchController(repository: AlbumRepositoryImpl()),
+      () => SearchController(repository: AlbumRepositoryImpl.to),
     );
   }
 }

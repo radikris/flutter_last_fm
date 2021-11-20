@@ -7,21 +7,23 @@ import 'package:get/get.dart';
 const _defaultConnectTimeout = Duration.millisecondsPerMinute;
 const _defaultReceiveTimeout = Duration.millisecondsPerMinute;
 
-class DioClient {
-  final String baseUrl;
+class ApiClient extends GetxService {
+  static ApiClient get to => Get.find<ApiClient>();
 
+  late String _baseUrl;
+  late String _apiKey;
+  late List<Interceptor>? interceptors;
   late Dio _dio;
 
-  final List<Interceptor>? interceptors;
+  ApiClient({List<Interceptor>? interceptors}) {
+    _dio = Dio();
+    _baseUrl = "http://ws.audioscrobbler.com/2.0/";
+    _apiKey = "8dd4bab2643a71f57da6fe2fd466825b"; //TODO make api_key private ofc
+    interceptors = interceptors;
 
-  DioClient(
-    this.baseUrl,
-    Dio dio, {
-    this.interceptors,
-  }) {
-    _dio = dio;
+    ///
     _dio
-      ..options.baseUrl = baseUrl
+      ..options.baseUrl = _baseUrl
       ..options.connectTimeout = _defaultConnectTimeout
       ..options.receiveTimeout = _defaultReceiveTimeout
       ..httpClientAdapter
@@ -47,6 +49,8 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
+    Map<String, dynamic> defaults = {"api_key": _apiKey, "format": "json"};
+    queryParameters?.addAll(defaults);
     try {
       var response = await _dio.get(
         uri,
@@ -61,7 +65,7 @@ class DioClient {
     } on FormatException catch (_) {
       throw FormatException('error_process_data'.tr);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -88,7 +92,7 @@ class DioClient {
     } on FormatException catch (_) {
       throw FormatException('error_process_data'.tr);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }
