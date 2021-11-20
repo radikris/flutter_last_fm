@@ -9,6 +9,10 @@ import 'package:last_fm_api/theme/translations.dart';
 import 'package:flavor/flavor.dart';
 
 void main() {
+  Flavor.create(
+    Environment.beta, //mock
+  );
+
   runApp(
     ScreenUtilInit(
       designSize: const Size(375, 812),
