@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:last_fm_api/models/album.dart';
 import 'package:last_fm_api/models/albumdetail.dart';
