@@ -15,6 +15,7 @@ class SearchController extends GetxController {
 
   RxString searchPhrase = ''.obs;
   RxList<Album> albums = <Album>[].obs;
+  late String selectedAlbumId;
 
   @override
   void onInit() {
@@ -42,5 +43,9 @@ class SearchController extends GetxController {
 
   void searchControllerOnChanged(String value) {
     searchPhrase.value = value;
+  }
+
+  void saveSelectedAlbumId(String mbid) {
+    selectedAlbumId = mbid;
   }
 }

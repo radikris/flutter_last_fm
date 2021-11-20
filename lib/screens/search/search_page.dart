@@ -60,7 +60,6 @@ class _SearchPageState extends State<SearchPage> {
           child: Center(
             child: Column(
               children: [
-                InkWell(onTap: Navigation.toDetail, child: Text("SEARCH")),
                 SizedBox(
                     width: double.infinity,
                     child: CommonEditText(
@@ -80,8 +79,14 @@ class _SearchPageState extends State<SearchPage> {
                     child: PagedListView<int, Album>(
                       pagingController: controller.pagingController,
                       builderDelegate: PagedChildBuilderDelegate<Album>(
-                        itemBuilder: (context, item, index) => AlbumCard(
-                          album: item,
+                        itemBuilder: (context, item, index) => GestureDetector(
+                          onTap: () {
+                            controller.saveSelectedAlbumId(item.mbid ?? "");
+                            Navigation.toDetail();
+                          },
+                          child: AlbumCard(
+                            album: item,
+                          ),
                         ),
                       ),
                     ),

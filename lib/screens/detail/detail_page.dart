@@ -12,7 +12,7 @@ class DetailPage extends GetView<DetailController> {
   Widget build(BuildContext context) {
     return CommonBackground(
       appBar: CommonAppBar(
-        title: 'detail_name',
+        title: controller.mbid,
         canGoBack: true,
       ),
       child: Center(
