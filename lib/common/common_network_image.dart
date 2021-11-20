@@ -6,16 +6,18 @@ class CommonNetworkImage extends StatelessWidget {
 
   final double? width;
   final double? height;
-  final String url;
+  final String? url;
 
   @override
   Widget build(BuildContext context) {
-    return FadeInImage.memoryNetwork(
-      width: width,
-      height: height,
-      placeholder: kTransparentImage,
-      image: url,
-      fit: BoxFit.cover,
-    );
+    return (url == null || url!.trim().isEmpty)
+        ? Image.memory(kTransparentImage)
+        : FadeInImage.memoryNetwork(
+            width: width,
+            height: height,
+            placeholder: kTransparentImage,
+            image: url!,
+            fit: BoxFit.cover,
+          );
   }
 }
