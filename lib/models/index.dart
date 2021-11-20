@@ -1,4 +1,5 @@
 export 'album.dart';
+export 'albumdetail.dart';
 export 'albummatches.dart';
 export 'artist.dart';
 export 'attr.dart';
@@ -8,6 +9,7 @@ export 'tag.dart';
 export 'tags.dart';
 export 'track.dart';
 export 'tracks.dart';
+export 'wiki.dart';
 import 'package:quiver/core.dart';
 
 T? checkOptional<T>(Optional<T?>? optional, T? def) {

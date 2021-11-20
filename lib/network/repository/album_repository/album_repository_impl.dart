@@ -26,4 +26,24 @@ class AlbumRepositoryImpl extends GetxService implements AlbumRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
+
+  @override
+  Future<ApiResult<List<Album>>> fetchAlbumDetail({String? mbid}) {
+    // TODO: implement fetchAlbumDetail
+    throw UnimplementedError();
+  }
+
+  // @override
+  // Future<ApiResult<Album>>> fetchAlbumDetail({String? mbid}) async {
+  //   try {
+  //     final response = await ApiClient.to.get("", queryParameters: {
+  //       "mbid": mbid,
+  //       "method": "album.getInfo",
+  //     });
+  //     List<Album> albumList = Albummatches.fromJson(response["results"]["albummatches"]).album;
+  //     return ApiResult.success(data: albumList);
+  //   } catch (e) {
+  //     return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+  //   }
+  // }
 }
