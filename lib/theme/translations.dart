@@ -20,7 +20,10 @@ class Translation extends Translations {
           'error_api_connection_timeout': "Send timeout in connection with API server",
           'error_process_data': 'error_process_data',
           'error_not_acceptable': "Not acceptable",
-          'search_hint': 'Search your albums'
+          'search_hint': 'Search your albums',
+          'playlist': 'Playlist',
+          'summary': 'Summary',
+          'empty_album': 'No album detail found:(',
         },
         //HUNGARIAN
         'hu_HU': {
@@ -39,7 +42,10 @@ class Translation extends Translations {
           'error_api_connection_timeout': "Send timeout in connection with API server",
           'error_process_data': 'error_process_data',
           'error_not_acceptable': "Not acceptable",
-          'search_hint': 'Search your albums'
+          'search_hint': 'Search your albums',
+          'playlist': 'Playlist',
+          'summary': 'Summary',
+          'empty_album': 'No album detail found:(',
         }
       };
 }

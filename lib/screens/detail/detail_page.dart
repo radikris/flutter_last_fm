@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-import 'package:last_fm_api/common/common_appbar.dart';
-import 'package:last_fm_api/common/common_background.dart';
-import 'package:last_fm_api/common/common_card.dart';
-import 'package:last_fm_api/common/common_network_image.dart';
-import 'package:last_fm_api/routes/app_navigator.dart';
+import 'package:last_fm_api/common/common_loading.dart';
 import 'package:last_fm_api/screens/detail/components/detail_chapter.dart';
 import 'package:last_fm_api/screens/detail/components/detail_info_chips.dart';
+import 'package:last_fm_api/screens/detail/components/detail_playlist.dart';
 import 'package:last_fm_api/screens/detail/components/detail_sliver_appbar.dart';
+import 'package:last_fm_api/screens/detail/components/detail_summary.dart';
 import 'package:last_fm_api/screens/detail/detail_controller.dart';
 import 'package:last_fm_api/theme/app_color.dart';
 import 'package:last_fm_api/theme/app_dimen.dart';
@@ -27,7 +25,7 @@ class DetailPage extends GetView<DetailController> {
           child: Center(
             child: Obx(
               () => controller.isLoading.value
-                  ? CircularProgressIndicator.adaptive()
+                  ? const CommonLoading()
                   : controller.albumdetail != null
                       ? NestedScrollView(
                           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -51,42 +49,8 @@ class DetailPage extends GetView<DetailController> {
                                     SizedBox(
                                       height: AppDimen.simpleSizeVertical,
                                     ),
-                                    const DetailChapter(chapter: "Playlist"),
-                                    CommonCard(
-                                      margin: EdgeInsets.symmetric(horizontal: AppDimen.commonSizeHorizontal),
-                                      child: ListView.separated(
-                                          shrinkWrap: true,
-                                          itemBuilder: (ctx, idx) {
-                                            final track = controller.albumdetail!.tracks?.track?.elementAt(idx);
-
-                                            return CommonCard(
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      InkWell(
-                                                          onTap: () => AppUtil.launchURL(track?.url ?? ""),
-                                                          child: const Icon(Icons.play_circle)),
-                                                      SizedBox(width: AppDimen.smallSizeHorizontal),
-                                                      Text(
-                                                        track?.name ?? "",
-                                                        style: themeData.textTheme.bodyText1
-                                                            ?.copyWith(fontWeight: FontWeight.bold),
-                                                        overflow: TextOverflow.ellipsis,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Text(AppUtil.formatedTime(track?.duration ?? 0))
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                          separatorBuilder: (ctx, idx) {
-                                            return Divider();
-                                          },
-                                          itemCount: controller.albumdetail!.tracks?.track?.length ?? 0),
-                                    ),
+                                    DetailChapter(chapter: 'playlist'.tr),
+                                    DetailPlayList(tracks: controller.albumdetail!.tracks),
                                     SizedBox(
                                       height: AppDimen.smallSizeVertical,
                                     ),
@@ -94,12 +58,9 @@ class DetailPage extends GetView<DetailController> {
                                       AppUtil.publishFormat(controller.albumdetail!.wiki?.published ?? ""),
                                       style: themeData.textTheme.overline?.copyWith(fontSize: 14),
                                     ),
-                                    DetailChapter(chapter: "Summary"),
-                                    Html(
-                                      data: controller.albumdetail!.wiki?.summary ?? "",
-                                      onLinkTap: (url, _, __, ___) {
-                                        AppUtil.launchURL(url ?? "");
-                                      },
+                                    DetailChapter(chapter: 'summary'.tr),
+                                    DetailSummary(
+                                      summary: controller.albumdetail!.wiki?.summary ?? "",
                                     ),
                                   ],
                                 ),
@@ -108,7 +69,7 @@ class DetailPage extends GetView<DetailController> {
                           ),
                         )
                       : Center(
-                          child: Text("No album detail found:("),
+                          child: Text('empty_album'.tr),
                         ),
             ),
           ),
