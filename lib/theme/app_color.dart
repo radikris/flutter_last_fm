@@ -44,4 +44,7 @@ class AppColor {
   static const activeColor = Color(0xff39393A);
   static const inactiveColor = Color(0xff8F9192);
   static const disabledColor = Color(0xffE8E8E8);
+
+  static const backgroundGradient = LinearGradient(
+      begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [AppColor.primary200, AppColor.primary50]);
 }

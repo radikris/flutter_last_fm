@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:last_fm_api/common/common_network_image.dart';
 import 'package:last_fm_api/models/album.dart';
 import 'package:last_fm_api/screens/search/components/album_card_description.dart';
 import 'package:last_fm_api/screens/search/components/album_card_wrapper.dart';
@@ -26,15 +27,8 @@ class AlbumCard extends StatelessWidget {
           top: 15.0,
           bottom: 15.0,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image(
-              width: 110.0,
-              image: NetworkImage(
-                album.image?.elementAt(3).text ?? "",
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
+              borderRadius: BorderRadius.circular(20.0),
+              child: CommonNetworkImage(url: album.image?.elementAt(3).text ?? "")),
         ),
       ],
     );
