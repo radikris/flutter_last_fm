@@ -34,23 +34,7 @@ class AppColor {
   static const grey100 = Color(0xffCCCCCC);
   static const grey50 = Color(0xffE5E5E5);
 
-  static const categoryPingpong = Color(0xffE52600);
-  static const categoryStreetWorkout = Color(0xffE59900);
-  static const categoryBadminton = Color(0xffBFE500);
-  static const categoryRunning = Color(0xff4CE500);
-  static const categoryTeqball = Color(0xff39AC4C);
-  static const categoryTennis = Color(0xff00E599);
-  static const categoryStreetball = Color(0xff00BFE5);
-  static const categorySpeedSkate = Color(0xff004DE5);
-  static const categoryFootballTennis = Color(0xff452EB8);
-  static const categorySkatePark = Color(0xff9900E5);
-  static const categoryVolleyball = Color(0xffE500BF);
-  static const categoryBasketball = Color(0xffCF1754);
-  static const categoryFootball = Color(0xff666666);
-  static const categoryParkour = Color(0xff999999);
-  static const categoryChess = Color(0xff1A1A1A);
-
-  static const app = Color(0xff000000);
+  static const appBlack = Color(0xff000000);
   static const appWhite = Color(0xffFFFFFF);
   static const appBackground = Color(0xffF1F8F5);
 
