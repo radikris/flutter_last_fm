@@ -39,6 +39,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  #TEST
+  integration_test:
+
   #json model generatior
   json_to_model: ^3.0.1
   build_runner: ^2.1.5
