@@ -102,13 +102,13 @@ class AppTheme {
       unselectedLabelColor: AppColor.inactiveColor,
       labelPadding: EdgeInsets.only(top: AppDimen.smallestSizeVertical),
     ),
-    switchTheme: SwitchThemeData(),
+    switchTheme: const SwitchThemeData(),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
   );
 
   /// ColorSchemes.
-  static final ColorScheme _colorScheme = ColorScheme(
+  static const ColorScheme _colorScheme = ColorScheme(
     primary: AppColor.primary500,
     primaryVariant: AppColor.primary900,
     secondary: AppColor.primary900,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -28,7 +30,7 @@ class SearchController extends GetxController {
     return result.when(success: (success) {
       return success;
     }, failure: (failure) {
-      print(failure);
+      log(failure.toString());
       return [];
     });
   }

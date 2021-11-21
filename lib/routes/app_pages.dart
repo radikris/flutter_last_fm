@@ -13,13 +13,13 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.SEARCH,
-      page: () => SearchPage(),
+      page: () => const SearchPage(),
       binding: SearchBinding(),
       transition: Transition.leftToRightWithFade,
     ),
     GetPage(
       name: _Paths.DETAIL,
-      page: () => DetailPage(),
+      page: () => const DetailPage(),
       binding: DetailBinding(),
       transition: Transition.leftToRightWithFade,
     ),

@@ -30,17 +30,21 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> _fetchPage(int pageKey) async {
-    try {
-      final apiResult = await controller.fetchAlbums(page: pageKey);
-      final isLastPage = apiResult.length < controller.pageSize;
-      if (isLastPage) {
-        controller.pagingController.appendLastPage(apiResult);
-      } else {
-        final int nextPageKey = pageKey + (apiResult.length);
-        controller.pagingController.appendPage(apiResult, nextPageKey);
+    if (controller.searchController.text.isNotEmpty) {
+      try {
+        final apiResult = await controller.fetchAlbums(page: pageKey);
+        final isLastPage = apiResult.length < controller.pageSize;
+        if (isLastPage) {
+          controller.pagingController.appendLastPage(apiResult);
+        } else {
+          final int nextPageKey = pageKey + (apiResult.length);
+          controller.pagingController.appendPage(apiResult, nextPageKey);
+        }
+      } catch (error) {
+        controller.pagingController.error = error;
       }
-    } catch (error) {
-      controller.pagingController.error = error;
+    } else {
+      controller.pagingController.itemList = [];
     }
   }
 

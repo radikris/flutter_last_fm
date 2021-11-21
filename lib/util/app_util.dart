@@ -28,7 +28,7 @@ class AppUtil {
   }
 
   static String publishFormat(String publish) {
-    return 'published'.tr + '${publish.split(',').elementAt(0).toString()}';
+    return 'published'.tr + publish.split(',').elementAt(0).toString();
   }
 
   static void launchURL(String url) async {

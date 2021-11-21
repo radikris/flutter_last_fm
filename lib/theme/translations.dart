@@ -46,7 +46,8 @@ class Translation extends Translations {
           'search_hint': 'Keresd az albumaid',
           'playlist': 'Lejátszási lista',
           'summary': 'Összefoglaló',
-          'empty_album': 'Nem tudjuk a részleteket megjeleníteni:(\nAPI inkonzisztens',
+          'empty_album':
+              'Nem tudjuk a részleteket megjeleníteni:(\nAPI inkonzisztens', //TODO tags: string vagy List of tag...
           'published': 'Kiadva: ',
         }
       };

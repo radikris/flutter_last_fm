@@ -20,7 +20,7 @@ class AlbumRepositoryMock extends GetxService implements AlbumRepository {
       //     ''';
 
       //Albumdetail albumDetail = Albumdetail.fromJson(response["album"]);
-      Albumdetail albumdetail = Albumdetail(
+      Albumdetail albumdetail = const Albumdetail(
           artist: "Mock1",
           image: [
             Image(),
@@ -77,7 +77,7 @@ class AlbumRepositoryMock extends GetxService implements AlbumRepository {
       // List<Album> albumList = Albummatches.fromJson(response["results"]["albummatches"]).album;
       List<Album> albumList = [];
       albumList
-        ..add(Album(
+        ..add(const Album(
             artist: "Mock1",
             image: [
               Image(),
@@ -91,7 +91,7 @@ class AlbumRepositoryMock extends GetxService implements AlbumRepository {
             name: "Mock1 album",
             streamable: "m1",
             url: ""))
-        ..add(Album(
+        ..add(const Album(
             artist: "Mock2",
             image: [
               Image(),
@@ -105,7 +105,7 @@ class AlbumRepositoryMock extends GetxService implements AlbumRepository {
             name: "Mock2 album",
             streamable: "m2",
             url: ""))
-        ..add(Album(
+        ..add(const Album(
             artist: "Mock3",
             image: [
               Image(),
@@ -119,7 +119,7 @@ class AlbumRepositoryMock extends GetxService implements AlbumRepository {
             name: "Mock3 album",
             streamable: "m3",
             url: ""))
-        ..add(Album(
+        ..add(const Album(
             artist: "Mock4",
             image: [
               Image(),
