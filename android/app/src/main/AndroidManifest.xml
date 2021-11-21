@@ -2,7 +2,7 @@
     package="com.example.last_fm_api">
    <application
         android:label="last_fm_api"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
