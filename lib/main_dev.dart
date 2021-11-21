@@ -13,10 +13,6 @@ void main() {
     Environment.dev, //impl
   );
 
-  print(
-    Flavor.I.environment.toString(),
-  );
-
   runApp(
     ScreenUtilInit(
       designSize: const Size(375, 812),

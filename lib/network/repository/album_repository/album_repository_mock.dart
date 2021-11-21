@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-import 'package:last_fm_api/models/albumdetail.dart';
 import 'package:last_fm_api/models/album.dart';
-import 'package:last_fm_api/models/albummatches.dart';
+import 'package:last_fm_api/models/albumdetail.dart';
 import 'package:last_fm_api/models/image.dart';
 import 'package:last_fm_api/models/index.dart';
 import 'package:last_fm_api/models/track.dart';

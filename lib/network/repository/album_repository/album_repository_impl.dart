@@ -30,10 +30,14 @@ class AlbumRepositoryImpl extends GetxService implements AlbumRepository {
   @override
   Future<ApiResult<Albumdetail>> fetchAlbumDetail({String? mbid, String? album, String? artist}) async {
     try {
-      final response = await ApiClient.to.get("",
-          queryParameters: {"method": "album.getInfo", "mbid": mbid, "artist": artist, "album": album, "lang": "hu"});
+      final response = await ApiClient.to.get("", queryParameters: {
+        "method": "album.getInfo",
+        "mbid": mbid,
+        "artist": artist,
+        "album": album,
+        //"lang": "hu" //doesn't make sense adding lang option, because null
+      });
       Albumdetail albumDetail = Albumdetail.fromJson(response["album"]);
-      print(albumDetail);
       return ApiResult.success(data: albumDetail);
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));

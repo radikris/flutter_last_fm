@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:last_fm_api/common/common_network_image.dart';
 import 'package:last_fm_api/models/album.dart';
 import 'package:last_fm_api/screens/search/components/album_card_description.dart';
 import 'package:last_fm_api/screens/search/components/album_card_wrapper.dart';
-import 'package:last_fm_api/theme/app_dimen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AlbumCard extends StatelessWidget {
   const AlbumCard({Key? key, required this.album}) : super(key: key);

@@ -20,7 +20,6 @@ class DetailController extends GetxController {
       albumdetail = success;
       isLoading.value = false;
     }, failure: (failure) {
-      print("fail");
       albumdetail = null;
       isLoading.value = false;
     });

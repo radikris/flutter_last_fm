@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:last_fm_api/common/common_loading.dart';
 import 'package:last_fm_api/screens/detail/components/detail_chapter.dart';
