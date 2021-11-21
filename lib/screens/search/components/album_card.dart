@@ -4,6 +4,7 @@ import 'package:last_fm_api/common/common_network_image.dart';
 import 'package:last_fm_api/models/album.dart';
 import 'package:last_fm_api/screens/search/components/album_card_description.dart';
 import 'package:last_fm_api/screens/search/components/album_card_wrapper.dart';
+import 'package:last_fm_api/theme/app_dimen.dart';
 
 class AlbumCard extends StatelessWidget {
   const AlbumCard({Key? key, required this.album}) : super(key: key);
@@ -12,12 +13,11 @@ class AlbumCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
     return Stack(
       children: <Widget>[
         AlbumCardWrapper(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(100.0, 20.0, 20.0, 20.0),
+            padding: EdgeInsets.fromLTRB(100.0.w, 20.0.h, 20.0.h, 20.0.w),
             child: AlbumCardDescription(album: album),
           ),
         ),
@@ -26,7 +26,7 @@ class AlbumCard extends StatelessWidget {
           top: 15.0,
           bottom: 15.0,
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(AppDimen.commonRadius),
               child: CommonNetworkImage(width: 110.w, url: album.image?.elementAt(3).text ?? "")),
         ),
       ],

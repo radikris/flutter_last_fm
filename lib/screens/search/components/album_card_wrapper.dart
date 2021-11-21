@@ -18,7 +18,9 @@ class AlbumCardWrapper extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(AppDimen.mediumRadius),
-          boxShadow: const <BoxShadow>[BoxShadow(color: Colors.black54, blurRadius: 5.0, offset: Offset(0.0, 0.75))],
+          boxShadow: <BoxShadow>[
+            BoxShadow(color: Colors.black54, blurRadius: AppDimen.smallestRadius, offset: const Offset(0.0, 0.75))
+          ],
         ),
         child: child);
   }

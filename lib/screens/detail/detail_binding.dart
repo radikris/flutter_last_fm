@@ -9,7 +9,7 @@ import 'package:last_fm_api/screens/search/search_controller.dart';
 class DetailBinding extends Bindings {
   @override
   void dependencies() {
-    //TODO first only saved mbid, but API not everywhere had it
+    //TODO first only saved mbid, but API: not every album had mbid
     AlbumRepository repository;
     if (Flavor.I.isDevelopment) {
       repository = AlbumRepositoryImpl.to;

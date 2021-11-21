@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
 
 class AppUtil {
   AppUtil._();
@@ -27,7 +28,7 @@ class AppUtil {
   }
 
   static String publishFormat(String publish) {
-    return 'Published: ' + '${publish.split(',').elementAt(0).toString()}';
+    return 'published'.tr + '${publish.split(',').elementAt(0).toString()}';
   }
 
   static void launchURL(String url) async {

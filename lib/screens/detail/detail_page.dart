@@ -20,7 +20,7 @@ class DetailPage extends GetView<DetailController> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(gradient: AppColor.backgroundGradient),
+          decoration: const BoxDecoration(gradient: AppColor.backgroundGradient),
           child: Center(
             child: Obx(
               () => controller.isLoading.value

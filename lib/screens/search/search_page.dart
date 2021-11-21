@@ -56,8 +56,10 @@ class _SearchPageState extends State<SearchPage> {
       appBar: CommonAppBar(title: 'app_title'.tr),
       child: SafeArea(
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: AppDimen.simpleSizeHorizontal, vertical: AppDimen.simpleSizeVertical),
+          padding: EdgeInsets.only(
+              left: AppDimen.simpleSizeHorizontal,
+              right: AppDimen.simpleSizeHorizontal,
+              bottom: AppDimen.simpleSizeVertical),
           child: SingleChildScrollView(
             child: Center(
               child: Column(
@@ -72,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
                   SizedBox(
                     height: AppDimen.commonSizeVertical,
                   ),
-                  Container(
+                  SizedBox(
                     height: Get.size.height * 0.73,
                     child: RefreshIndicator(
                       onRefresh: () => Future.sync(

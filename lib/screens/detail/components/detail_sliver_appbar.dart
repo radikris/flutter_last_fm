@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:last_fm_api/common/common_network_image.dart';
 import 'package:last_fm_api/routes/app_navigator.dart';
 import 'package:last_fm_api/theme/app_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailSliverAppBar extends StatelessWidget {
   const DetailSliverAppBar({Key? key, required this.albumName, required this.albumImage}) : super(key: key);
@@ -13,14 +14,14 @@ class DetailSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return SliverAppBar(
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: AppColor.appWhite, //change your color here
       ),
       leading: const InkWell(
         child: Icon(Icons.arrow_back_ios),
         onTap: Navigation.popBack,
       ),
-      expandedHeight: 220.0,
+      expandedHeight: 200.0.h,
       pinned: true,
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
